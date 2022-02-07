@@ -1,6 +1,10 @@
 ﻿[← back to readme](README.md)
 
 # Release notes
+## Upcoming release for Stardew Valley 1.6
+* Updated for Stardew Valley 1.6.
+* Added more seed info for tree lookups.
+
 ## Upcoming release
 * Fixed ingredient names in recipes that need any egg or any milk.
 * Improved controller support in the search menu.

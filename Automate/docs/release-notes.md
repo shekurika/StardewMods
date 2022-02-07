@@ -1,6 +1,10 @@
 ﻿[← back to readme](README.md)
 
 # Release notes
+## Upcoming release for Stardew Valley 1.6
+* Updated for Stardew Valley 1.6.
+* Added support for custom floors/paths as connectors.
+
 ## Upcoming release
 * Improved translations. Thanks to DAhrin (updated German)!
 

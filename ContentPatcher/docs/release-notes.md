@@ -9,6 +9,9 @@ When releasing a format change, don't forget to update the smapi.io/json schema!
 
 
 -->
+## Upcoming release for Stardew Valley 1.6
+* Updated for Stardew Valley 1.6.
+
 ## Upcoming release
 * `patch export` now supports custom data types.
 * `patch export` now writes enum values as their constant name instead of their numeric value.
