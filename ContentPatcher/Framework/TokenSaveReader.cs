@@ -91,15 +91,8 @@ namespace ContentPatcher.Framework
             return this.GetCached(
                 nameof(this.GetAllPlayers),
                 () => this.GetForState(
-                    loaded: Game1.getAllFarmers,
-                    reading: save => Enumerable
-                        .Repeat(save.player, 1)
-                        .Concat(
-                            from building in (this.GetLocationFromName("Farm") as Farm)?.buildings ?? Enumerable.Empty<Building>()
-                            let farmhand = (building.indoors.Value as Cabin)?.farmhand.Value
-                            where farmhand != null
-                            select farmhand
-                        ),
+                loaded: Game1.getAllFarmers,
+                    reading: save => new[] { save.player }.Concat(save.farmhands),
                     defaultValue: Array.Empty<Farmer>()
                 )
             );
@@ -145,7 +138,7 @@ namespace ContentPatcher.Framework
                     {
                         // home
                         case FarmHouse farmhouse:
-                            return farmhouse.owner.UniqueMultiplayerID;
+                            return farmhouse.owner?.UniqueMultiplayerID;
                         case IslandFarmHouse:
                             return this.GetPlayer(PlayerType.HostPlayer)?.UniqueMultiplayerID;
 
@@ -342,7 +335,7 @@ namespace ContentPatcher.Framework
             if (player == null)
                 yield break;
 
-            if (player.eventsSeen.Contains(2120303))
+            if (player.eventsSeen.Contains("2120303"))
                 yield return WalletItem.BearsKnowledge.ToString();
             if (player.hasClubCard)
                 yield return WalletItem.ClubCard.ToString();
@@ -362,7 +355,7 @@ namespace ContentPatcher.Framework
                 yield return WalletItem.SkullKey.ToString();
             if (player.hasSpecialCharm)
                 yield return WalletItem.SpecialCharm.ToString();
-            if (player.eventsSeen.Contains(3910979))
+            if (player.eventsSeen.Contains("3910979"))
                 yield return WalletItem.SpringOnionMastery.ToString();
         }
 

@@ -17,6 +17,7 @@ using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewModdingAPI.Utilities;
 using StardewValley;
+using TokenParser = ContentPatcher.Framework.TokenParser;
 
 [assembly: InternalsVisibleTo("Pathoschild.Stardew.Tests.Mods")]
 namespace ContentPatcher

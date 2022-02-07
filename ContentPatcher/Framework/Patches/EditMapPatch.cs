@@ -306,7 +306,7 @@ namespace ContentPatcher.Framework.Patches
             // prepend to map property
             if (validWarps.Any())
             {
-                string prevWarps = target.Properties.TryGetValue("Warp", out PropertyValue? rawWarps)
+                string prevWarps = target.Properties.TryGetValue("Warp", out PropertyValue rawWarps)
                     ? rawWarps.ToString()
                     : "";
                 string newWarps = string.Join(" ", validWarps);
@@ -362,7 +362,7 @@ namespace ContentPatcher.Framework.Patches
 
                         // get key/value
                         string key = operation.Target[1].Value!;
-                        string? value = target.Properties.TryGetValue(key, out PropertyValue? property)
+                        string? value = target.Properties.TryGetValue(key, out PropertyValue property)
                             ? property.ToString()
                             : null;
 
