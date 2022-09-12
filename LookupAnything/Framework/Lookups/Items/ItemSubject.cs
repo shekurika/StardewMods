@@ -153,8 +153,8 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Items
 
                 if (potCrop != null)
                 {
-                    Item drop = this.GameHelper.GetObjectById(potCrop.indexOfHarvest.Value);
-                    yield return new LinkField(I18n.Item_Contents(), drop.DisplayName, () => this.GetCropSubject(potCrop, ObjectContext.World, pot.hoeDirt.Value));
+                    string dropName = ItemRegistry.GetDataOrErrorItem(potCrop.indexOfHarvest.Value).DisplayName;
+                    yield return new LinkField(I18n.Item_Contents(), dropName, () => this.GetCropSubject(potCrop, ObjectContext.World, pot.hoeDirt.Value));
                 }
 
                 if (potBush != null)
@@ -382,8 +382,8 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Items
                 && item.ItemId != "770"; // skip mixed seeds
             if (seeAlsoCrop)
             {
-                Item drop = this.GameHelper.GetObjectById(this.SeedForCrop!.indexOfHarvest.Value);
-                yield return new LinkField(I18n.Item_SeeAlso(), drop.DisplayName, () => this.GetCropSubject(this.SeedForCrop, ObjectContext.Inventory, null));
+                string dropName = ItemRegistry.GetDataOrErrorItem(this.SeedForCrop!.indexOfHarvest.Value).DisplayName;
+                yield return new LinkField(I18n.Item_SeeAlso(), dropName, () => this.GetCropSubject(this.SeedForCrop, ObjectContext.Inventory, null));
             }
         }
 
@@ -442,7 +442,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Items
             if (item is Fence fence)
             {
                 string spriteID = fence.GetItemParentSheetIndex();
-                return this.GameHelper.GetObjectById(spriteID);
+                return ItemRegistry.Create(spriteID);
             }
 
             return item;
