@@ -158,7 +158,7 @@ namespace Pathoschild.Stardew.ChestsAnywhere
                                 location: location,
                                 tile: new Vector2(hut.tileX.Value, hut.tileY.Value),
                                 mapEntity: building,
-                                defaultDisplayName: this.GetDisambiguatedDefaultName(GameI18n.GetBuildingName("Junimo Hut"), nameCounts),
+                                defaultDisplayName: this.GetDisambiguatedDefaultName(GameI18n.GetString("Strings\\Buildings:JunimoHut_Name"), nameCounts),
                                 defaultCategory: category
                             );
                         }
@@ -167,7 +167,7 @@ namespace Pathoschild.Stardew.ChestsAnywhere
                     // shipping bin
                     if (this.HasShippingBin(location))
                     {
-                        string shippingBinLabel = GameI18n.GetBuildingName("Shipping Bin");
+                        string shippingBinLabel = GameI18n.GetString("Strings\\Buildings:ShippingBin_Name");
 
                         if (Constants.TargetPlatform == GamePlatform.Android)
                         {
@@ -368,17 +368,30 @@ namespace Pathoschild.Stardew.ChestsAnywhere
                 case SObject obj when obj.QualifiedItemId == this.AutoGrabberID:
                     return this.GetChestInventory(obj.heldObject.Value as Chest);
 
-                // buildings
-                case JunimoHut hut:
-                    return this.GetChestInventory(hut.output.Value);
-                case Mill mill:
-                    return this.GetChestInventory(mill.output.Value);
-
                 // shipping bin
                 case Farm:
                 case IslandWest:
                 case ShippingBin:
                     return Game1.getFarm().getShippingBin(Game1.player);
+
+                // buildings
+                case JunimoHut hut:
+                    return this.GetChestInventory(hut.output.Value);
+                case Building building:
+                    {
+                        // 'output' convention (e.g. vanilla Mill)
+                        Chest? output = building.GetBuildingChest("Output");
+                        if (output != null)
+                            return output.Items;
+
+                        // else only chest
+                        IList<Chest>? chests = building.buildingChests;
+                        if (chests?.Count == 1)
+                            return chests[0].Items;
+
+                        // else no match
+                        return null;
+                    }
 
                 // dresser
                 case StorageFurniture furniture:

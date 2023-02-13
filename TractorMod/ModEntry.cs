@@ -35,7 +35,7 @@ namespace Pathoschild.Stardew.TractorMod
         /// <summary>The update rate when multiple players are in the same location (as a frame multiple). This should be more frequent due to sprite broadcasts, new horses instances being created during NetRef&lt;Horse&gt; syncs, etc.</summary>
         private readonly uint TextureUpdateRateWithMultiplePlayers = 3;
 
-        /// <summary>The unique ID for the stable building in <c>Data/BuildingsData</c>.</summary>
+        /// <summary>The unique ID for the stable building in <c>Data/Buildings</c>.</summary>
         private readonly string GarageBuildingId = "Pathoschild.TractorMod_Stable";
 
         /// <summary>The minimum version the host must have for the mod to be enabled on a farmhand.</summary>
@@ -240,7 +240,7 @@ namespace Pathoschild.Stardew.TractorMod
             this.AudioManager.OnAssetRequested(e);
             this.TextureManager.OnAssetRequested(e);
 
-            if (e.NameWithoutLocale.IsEquivalentTo("Data/BuildingsData"))
+            if (e.NameWithoutLocale.IsEquivalentTo("Data/Buildings"))
             {
                 e.Edit(editor =>
                 {
@@ -277,7 +277,7 @@ namespace Pathoschild.Stardew.TractorMod
         /// <param name="e">The event data.</param>
         private void OnLocaleChanged(object? sender, LocaleChangedEventArgs e)
         {
-            this.Helper.GameContent.InvalidateCache("Data/BuildingsData");
+            this.Helper.GameContent.InvalidateCache("Data/Buildings");
         }
 
         /// <inheritdoc cref="IWorldEvents.LocationListChanged"/>
@@ -470,7 +470,7 @@ namespace Pathoschild.Stardew.TractorMod
         /// <summary>Reapply the mod configuration.</summary>
         private void UpdateConfig()
         {
-            this.Helper.GameContent.InvalidateCache("Data/BuildingsData");
+            this.Helper.GameContent.InvalidateCache("Data/Buildings");
 
             foreach (var pair in this.TractorManagerImpl.GetActiveValues())
                 this.UpdateConfigFor(pair.Value);

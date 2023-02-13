@@ -182,9 +182,9 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Buildings
                         break;
 
                     // mill
-                    case Mill mill:
-                        yield return new ItemIconListField(this.GameHelper, I18n.Building_OutputProcessing(), mill.input.Value?.GetItemsForPlayer(Game1.player.UniqueMultiplayerID), showStackSize: true);
-                        yield return new ItemIconListField(this.GameHelper, I18n.Building_OutputReady(), mill.output.Value?.GetItemsForPlayer(Game1.player.UniqueMultiplayerID), showStackSize: true);
+                    case not null when building.buildingType.Value == "Mill":
+                        yield return new ItemIconListField(this.GameHelper, I18n.Building_OutputProcessing(), building.GetBuildingChest("Input")?.GetItemsForPlayer(Game1.player.UniqueMultiplayerID), showStackSize: true);
+                        yield return new ItemIconListField(this.GameHelper, I18n.Building_OutputReady(), building.GetBuildingChest("Output")?.GetItemsForPlayer(Game1.player.UniqueMultiplayerID), showStackSize: true);
                         break;
 
                     // silo

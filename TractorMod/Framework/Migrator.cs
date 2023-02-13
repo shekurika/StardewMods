@@ -23,7 +23,7 @@ namespace Pathoschild.Stardew.TractorMod.Framework
         /// <summary>The absolute path to the mod file used to store info before Tractor Mod 4.7.</summary>
         private static string LegacySaveDataRelativePath => Path.Combine("data", $"{Constants.SaveFolderName}.json");
 
-        /// <summary>The unique ID for the stable building in <c>Data/BuildingsData</c>.</summary>
+        /// <summary>The unique ID for the stable building in <c>Data/Buildings</c>.</summary>
         private const string GarageBuildingId = "Pathoschild.TractorMod_Stable";
 
         /// <summary>The actions to perform when the current session is saved.</summary>
